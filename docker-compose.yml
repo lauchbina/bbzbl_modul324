@@ -1,0 +1,13 @@
+services:
+  nginx:
+    build:
+      context: . # Muss zum Ordner mit einem Dockerfile zeigen
+      dockerfile: dev.Dockerfile
+    container_name: nginx
+    ports:
+      - "3000:3000"
+    env_file: ./local/.env
+    volumes:
+      - ./src/:/usr/share/nginx/html
+      - ./local/aws:/root/.aws
+      - ./local/ssh/id_rsa.pem:/root/.ssh/id_rsa.pem
